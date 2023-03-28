@@ -1,11 +1,16 @@
-// import themes from "../../styles/themes.module.scss";
+import themes from "../../styles/themes.module.scss";
 import { router } from "../../router";
 import { Button } from "../../shared/Button";
 
 const HomePage: React.FC = () => {
   return (
     <div className="p-6">
-      <h1 className="text-3xl font-bold text-center mb-4">Choose Your Game!</h1>
+      <h1
+        style={{ color: themes.accentError }}
+        className="text-3xl font-bold text-center mb-4"
+      >
+        Choose Your Game!
+      </h1>
       <div className="flex flex-col gap-8">
         <Button
           type={"button"}
