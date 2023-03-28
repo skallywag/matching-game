@@ -1,7 +1,7 @@
 @import "../styles/themes.module.scss";
 
 .defaultButton {
-  background-color: $primary;
+  background-color: $primary !important;
   height: 36px;
   font-size: 18px;
   font-weight: 700;
@@ -14,5 +14,22 @@
     cursor: pointer;
     background-color: rgb(175, 16, 16);
     transition: ease-in-out 0.1s;
+  }
+
+  .bigButton {
+    background-color: $primary !important;
+    height: 60px;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 20px;
+    border-style: none;
+    color: #ffff;
+    font-family: "Montserrat";
+    font-style: normal;
+    &:hover {
+      cursor: pointer;
+      background-color: rgb(175, 16, 16);
+      transition: ease-in-out 0.1s;
+    }
   }
 }
