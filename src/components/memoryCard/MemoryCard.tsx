@@ -2,12 +2,12 @@ import "./MemoryCard.scss";
 
 interface MemoryCardProps {
   id?: number;
-  image: string;
+  imageUrl: string;
 }
-const MemoryCard: React.FC<MemoryCardProps> = ({ image, id }) => {
+const MemoryCard: React.FC<MemoryCardProps> = ({ imageUrl, id }) => {
   return (
     <div className="memoryCard">
-      <img src={image} alt="card-image" />
+      <img src={imageUrl} alt="card-image" />
     </div>
   );
 };

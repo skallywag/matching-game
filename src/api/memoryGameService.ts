@@ -1,9 +1,10 @@
 import axios from "axios";
+import { Difficulty } from "../@types/models";
 
 export const memoryGameService = {
-  getCharacters: async () => {
+  getGameCards: async (data: number[]) => {
     const response = await axios.get(
-      "https://rickandmortyapi.com/api/character/1,2,3,4,5,6"
+      `https://rickandmortyapi.com/api/character/${data}`
     );
     return response.data;
   },

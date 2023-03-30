@@ -3,25 +3,49 @@ import { MemoryCard } from "../../components/memoryCard/MemoryCard";
 import ClipLoader from "react-spinners/ClipLoader";
 import { memoryGameService } from "../../api/memoryGameService";
 import "./MemoryGamePage.scss";
+import { Difficulty, GameCard } from "../../@types/models";
 
 const MemoryGamePage: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [gameCards, setGameCards] = useState([]);
+  const [gameCards, setGameCards] = useState<GameCard[] | undefined>([]);
+  const [difficulty, setDifficulty] = useState<number[]>([1, 2, 3, 4, 5, 6]);
 
   useEffect(() => {
-    getCharacters().catch(console.error);
+    getGameCards().catch(console.error);
   }, []);
 
-  async function getCharacters() {
+  async function getGameCards() {
     setIsLoading(true);
     try {
-      const response = await memoryGameService.getCharacters();
+      const response = await memoryGameService.getGameCards(difficulty);
+      concatGameCards(response);
       setIsLoading(false);
     } catch (error) {
       console.error(error);
       setIsLoading(false);
     }
   }
+
+  function concatGameCards(response: any) {
+    const newCardArray = response.map((item: GameCard) => {
+      return {
+        id: item.id,
+        imageUrl: item.image,
+      };
+    });
+
+    setGameCards(
+      newCardArray.concat(
+        newCardArray.map((item: GameCard) => {
+          return {
+            ...item,
+            id: item.id + "1",
+          };
+        })
+      )
+    );
+  }
+  console.log(gameCards);
 
   return (
     <div className="memoryPage">
@@ -34,8 +58,8 @@ const MemoryGamePage: React.FC = () => {
             data-testid="loader"
           />
         ) : (
-          gameCards.map((item: any) => {
-            return <MemoryCard key={item.id} image={item.url} />;
+          gameCards?.map((item: GameCard) => {
+            return <MemoryCard key={item.id} imageUrl={item.imageUrl} />;
           })
         )}
       </div>
