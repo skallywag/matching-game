@@ -16,7 +16,6 @@ const MemoryGamePage: React.FC = () => {
     setIsLoading(true);
     try {
       const response = await memoryGameService.getCharacters();
-      console.log(response);
       setIsLoading(false);
     } catch (error) {
       console.error(error);
@@ -26,6 +25,7 @@ const MemoryGamePage: React.FC = () => {
 
   return (
     <div className="memoryPage">
+      <h2>Difficulty</h2>
       <div className="gameContainer">
         {isLoading ? (
           <ClipLoader
@@ -34,8 +34,8 @@ const MemoryGamePage: React.FC = () => {
             data-testid="loader"
           />
         ) : (
-          gameCards.map((item) => {
-            return <MemoryCard />;
+          gameCards.map((item: any) => {
+            return <MemoryCard key={item.id} image={item.url} />;
           })
         )}
       </div>

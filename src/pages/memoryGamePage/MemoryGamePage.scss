@@ -3,5 +3,6 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(93px, 1fr));
     justify-items: center;
+    gap: 8px;
   }
 }

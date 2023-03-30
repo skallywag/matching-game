@@ -1,12 +1,13 @@
-//@ts-ignore
-import img from "../../assets/catering-home.jpeg";
 import "./MemoryCard.scss";
 
-interface MemoryCardProps {}
-const MemoryCard: React.FC<MemoryCardProps> = () => {
+interface MemoryCardProps {
+  id?: number;
+  image: string;
+}
+const MemoryCard: React.FC<MemoryCardProps> = ({ image, id }) => {
   return (
     <div className="memoryCard">
-      <img src={img} alt="image" />
+      <img src={image} alt="card-image" />
     </div>
   );
 };
